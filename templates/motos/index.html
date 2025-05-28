@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="titulo-pagina">Motos Disponíveis</h1>
+
+<section class="motos-container">
+    {% for moto in motos %}
+    <div class="moto-card">
+        <img src="{{ moto.imagem.url }}" alt="{{ moto.modelo }}" class="moto-img">
+        <div class="moto-info">
+            <h2 class="moto-modelo">{{ moto.modelo }} - {{ moto.ano }}</h2>
+            <p class="moto-marca">{{ moto.get_marca_display }}</p>
+            <p class="moto-preco">R$ {{ moto.preco }}</p>
+            <a href="{{ moto.link_whatsapp }}" target="_blank" class="botao-whatsapp">
+                Comprar via WhatsApp
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

@@ -1,7 +1,6 @@
-from django.shortcuts import render # vai renderizar o html
+from django.shortcuts import render
+from .models import Moto
 
 def motos(request):
-    return render(
-        request,
-        'motos_styles/index.html'
-    )
+    motos = Moto.objects.all()
+    return render(request, 'motos/index.html', {'motos': motos})
