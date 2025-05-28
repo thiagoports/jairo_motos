@@ -24,6 +24,6 @@ class Moto(models.Model):
         return f"{self.modelo} - {self.get_marca_display()}"
 
     def link_whatsapp(self):
-        numero = "5511999999999"
-        mensagem = f"Olá, tenho interesse na moto {self.modelo} ({self.ano})!"
+        numero = "5583991945349"
+        mensagem = f"Olá, tenho interesse na moto {self.marca} {self.modelo} ({self.ano})!"
         return f"https://wa.me/{numero}?text={mensagem.replace(' ', '%20')}"
