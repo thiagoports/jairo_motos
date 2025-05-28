@@ -3,3 +3,6 @@ from django.apps import AppConfig
 class MotosConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'motos'
+
+    def ready(self):
+        import motos.signals
