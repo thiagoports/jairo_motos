@@ -3,16 +3,17 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from motos import views as motos_views
+from motos.views import MotoListView, SignUpView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('accounts/', include('django.contrib.auth.urls')),
 
-    path('accounts/signup/', motos_views.signup, name='signup'),
+    path('accounts/signup/', SignUpView.as_view(), name='signup'),
 
-    path('home/', motos_views.motos, name='home'),
+    path('home/', MotoListView.as_view(), name='home'),
 
     # Redireciona root / → /home/
     path('', RedirectView.as_view(pattern_name='home', permanent=False)),

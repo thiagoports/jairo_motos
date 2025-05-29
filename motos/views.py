@@ -1,21 +1,27 @@
+from django.views.generic import ListView, View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Moto
 from .forms import SignUpForm
 
-@login_required(login_url='login')
-def motos(request):
-    motos = Moto.objects.all()
-    return render(request, 'motos/index.html', {'motos': motos})
 
-def signup(request):
-    if request.method == 'POST':
+class MotoListView(LoginRequiredMixin, ListView):
+    model = Moto
+    template_name = 'motos/index.html'
+    context_object_name = 'motos'
+    login_url = 'login'
+
+class SignUpView(View):
+    def get(self, request):
+        form = SignUpForm()
+        return render(request, 'registration/signup.html'), {'form':form}
+    
+    def post(self, request):
         form = SignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)             
+            login(request, user)
             return redirect('home')
-    else:
-        form = SignUpForm()
-    return render(request, 'registration/signup.html', {'form': form})
+        return render(request, 'registration/signup.html', {'form':form})
