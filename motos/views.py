@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Moto
 from .forms import SignUpForm
 
-
+# Class Based views:
 class MotoListView(LoginRequiredMixin, ListView):
     model = Moto
     template_name = 'motos/index.html'
