@@ -4,22 +4,28 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <img src="{% static 'img/logo_jairomotos.png' %}" alt="Jairo Motos" class="auth-logo">
   <div class="auth-container">
 
     <h2>Login</h2>
-    <form method="post">
+    <form method="post" class="formezin">
       {% csrf_token %}
-      {{ form.non_field_errors }}
       {% for field in form %}
-        <div class="form-field">
-          {{ field.label_tag }}
-          {{ field }}
-          {% if field.errors %}
-            <div class="form-error">{{ field.errors }}</div>
-          {% endif %}
-        </div>
+      <div class="form-field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <div class="form-error">{{ field.errors }}</div>
+        {% endif %}
+      </div>
       {% endfor %}
+
+      {# Centralized non-field errors #}
+      {% if form.non_field_errors %}
+      <div class="non-field-errors">
+        {{ form.non_field_errors }}
+      </div>
+      {% endif %}
+
       <button type="submit">Entrar</button>
     </form>
     <p class="auth-switch">

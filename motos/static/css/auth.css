@@ -9,29 +9,20 @@ body.auth-page {
   font-family: 'Montserrat', sans-serif;
 }
 
-img {
+img.auth-logo {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin: 0 auto;     
-  width: 400px;      
-  padding-bottom: 10px;    
-}
-
-.auth-content {
-  width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  margin: 0 auto 10px;
+  width: 400px;
 }
 
 .auth-container {
+  width: 100%;
   max-width: 400px;
   margin: 0 auto;
   background: #fff;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .auth-container h2 {
@@ -40,16 +31,46 @@ img {
   text-align: center;
 }
 
-.auth-container form input {
+.formezin {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.form-field input {
   width: 100%;
   padding: 10px;
-  margin-bottom: 15px;
+  margin-top: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
 }
 
-.auth-container form button {
+.form-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.non-field-errors {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.non-field-errors .errorlist {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 0.9rem;
+}
+
+.auth-container button {
   width: 100%;
   padding: 10px;
   background-color: #1E7FE6;
@@ -60,7 +81,7 @@ img {
   font-size: 1rem;
 }
 
-.auth-container form button:hover {
+.auth-container button:hover {
   background-color: #155ab6;
 }
 
@@ -77,15 +98,4 @@ img {
 
 .auth-switch a:hover {
   text-decoration: underline;
-}
-
-.form-error {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: -10px;
-  margin-bottom: 10px;
-}
-
-.form-field {
-  margin-bottom: 20px;
 }
