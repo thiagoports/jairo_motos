@@ -100,7 +100,7 @@ body {
 }
 
 .moto-card {
-    flex: 0 1 calc(50% - 10px);  /* Dois por linha no mobile */
+    flex: 0 1 calc(50% - 10px);  
     max-width: calc(50% - 10px);
     border: 1px solid #ddd;
     border-radius: 10px;
@@ -178,7 +178,7 @@ body {
     }
 
     .moto-card {
-        flex: 0 1 45%;  /* Ajuste mais espaçado */
+        flex: 0 1 45%;  
         max-width: 45%;
     }
 
