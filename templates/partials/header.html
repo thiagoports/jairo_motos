@@ -1,17 +1,23 @@
 {% load static %}
 <header class="header">
-    <img src="{% static 'img/logo_jairomotos.png' %}" alt="Jairo Motos" class="logo">
+    <!-- Logo -->
+    <div class="header-center">
+        <img src="{% static 'img/logo_jairomotos.png' %}" alt="Jairo Motos" class="logo">
+    </div>
+
     <nav class="nav-auth">
         {% if user.is_authenticated %}
-            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+            <form method="post" action="{% url 'logout' %}" class="logout-form">
                 {% csrf_token %}
-                <button type="submit" class="link-button">Logout</button>
+                <button type="submit" class="btn-logout">Logout</button>
             </form>
         {% else %}
-            |
-            <a href="{% url 'login' %}">Login</a>
-            |
-            <a href="{% url 'signup' %}">Cadastro</a>
+            <ul class="auth-links">
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'signup' %}">Cadastro</a></li>
+            </ul>
         {% endif %}
     </nav>
 </header>
+
+
