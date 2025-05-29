@@ -31,6 +31,7 @@ body {
 
 .footer {
     background-color: #333333;
+    font-weight: 600;
     color: white;
     text-align: center;
     padding: 15px 10px;
@@ -39,7 +40,6 @@ body {
 
 .footer a {
     color: #fff;
-    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
 }
 

@@ -1,6 +1,6 @@
 from django.urls import path
-from motos import views
+from . import views
 
 urlpatterns = [
-    path('', views.motos),
+    #dps colocar as url para editar e deletar
 ]
