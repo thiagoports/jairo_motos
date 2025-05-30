@@ -1,5 +1,6 @@
 body.auth-page {
-  background-color: #1E7FE6;
+  background: url('../img/santaluzia.svg') no-repeat center center fixed;
+  background-size: cover;
   margin: 0;
   padding: 0;
   display: flex;
@@ -19,15 +20,19 @@ img.auth-logo {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  background: #fff;
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff
 }
 
 .auth-container h2 {
   margin-bottom: 20px;
-  color: #333;
+  color: #fff;
   text-align: center;
 }
 
@@ -70,6 +75,55 @@ img.auth-logo {
   font-size: 0.9rem;
 }
 
+.google-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #fff;
+  color: #444;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.google-btn img {
+  width: 20px;
+  height: 20px;
+}
+
+.google-btn:hover {
+  background-color: #f7f7f7;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 40%;
+  background-color: #ccc;
+  top: 50%;
+}
+
+.divider::before {
+  left: 0;
+}
+
+.divider::after {
+  right: 0;
+}
+
 .auth-container button {
   width: 100%;
   padding: 10px;
@@ -91,8 +145,8 @@ img.auth-logo {
 }
 
 .auth-switch a {
-  color: #1E7FE6;
-  text-decoration: none;
+  color: #fff;
+  text-decoration: underline;
   font-weight: 600;
 }
 
