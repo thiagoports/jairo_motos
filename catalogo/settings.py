@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'motos',
+    'loja',
     'accounts',
 ]
 
@@ -72,7 +72,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'motos_db',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
+        'PASSWORD': 'Eoqmlk!123',
         'HOST': 'localhost',
         'PORT': '5432',
     }

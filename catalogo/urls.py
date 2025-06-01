@@ -3,7 +3,7 @@ from django.urls import include, path
 from django.views.generic import RedirectView
 from django.conf import settings
 from django.conf.urls.static import static
-from motos.views import MotoListView, SignUpView
+from loja.views import MotoListView, SignUpView
 
 
 urlpatterns = [
