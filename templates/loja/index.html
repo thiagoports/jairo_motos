@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 {% load formatadores %}
 
 {% block content %}
-<h1 class="titulo-pagina">Motos Disponíveis</h1>
+<h1 class="titulo-pagina">Produtos Disponíveis</h1>
 
 <form method="get" class="filtro-form">
     <div class="filtros">
@@ -31,13 +32,19 @@
                 <p class="moto-marca">{{ moto.get_marca_display }}</p>
                 <p class="moto-preco">{{ moto.preco|moeda_brasileira }}</p>
 
-                <form method="post" action="{% url 'carrinho' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="moto_id" value="{{ moto.id }}">
-                    <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
-                </form>
+                <a href="{{ moto.link_whatsapp }}" target="_blank" class="botao-whatsapp">
+                    WhatsApp
+                </a>
 
-
+                <button type="button"
+                        class="botao-ver-mais"
+                        data-modelo="{{ moto.modelo }}"
+                        data-descricao="{{ moto.descricao|default_if_none:''|escapejs }}"
+                        data-ano="{{ moto.ano }}"
+                        data-preco="{{ moto.preco }}"
+                        data-imagem="{{ moto.imagem.url }}">
+                    Ver mais
+                </button>
             </div>
         </div>
         {% endfor %}
@@ -68,4 +75,23 @@
     {% endif %}
 </div>
 
+<div id="modal-moto" class="modal">
+    <div class="modal-content">
+        <span id="modal-fechar" class="close">&times;</span>
+        <div class="conteudo-moto">
+            <img id="modal-imagem" src="" alt="Foto da moto" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px;">
+            <h2 id="modal-modelo"></h2>
+            <p id="modal-descricao" style="text-align: justify; margin-bottom: 15px;"></p>
+            <ul style="list-style: none; padding: 0; text-align: left;">
+                <li><strong>Ano:</strong> <span id="modal-ano"></span></li>
+                <li><strong>Preço:</strong> <span id="modal-preco"></span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'js/catalogo.js' %}"></script>
 {% endblock %}

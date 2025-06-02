@@ -185,7 +185,6 @@ body {
     background-color: #0056b3;
 }
 
-
 .content {
     flex: 1;
     padding: 20px 15px;
@@ -221,8 +220,6 @@ body {
     background-color: #0056b3;
     cursor: default;
 }
-
-
 
 .footer {
     background-color: #333333;
@@ -290,25 +287,45 @@ body {
 }
 
 .botao-whatsapp {
-    display: block;
+    display: inline-block;
     background-color: #25D366;
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: 600;
-    margin: 10px auto 0;
-    width: fit-content;
+    margin: 10px 8px 0 0;
+    width: auto;
     outline: none;
     border: 1px solid transparent;
     cursor: pointer;
+    vertical-align: middle;
 }
 
 .botao-whatsapp:hover {
     background-color: #1DA851;
 }
 
-/* RESPONSIVO ≥600px */
+.botao-ver-mais {
+    display: inline-block;
+    background-color: #1E7FE6;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+}
+
+.botao-ver-mais:hover {
+    background-color: #155ab6;
+}
+
 @media (min-width: 600px) {
     .header {
         flex-direction: row;
