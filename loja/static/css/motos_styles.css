@@ -39,6 +39,15 @@ body {
     cursor: pointer;
 }
 
+.capa-vitrine {
+    width: 95vw;
+    border-radius: 20px;
+    display: block;      
+    margin: 20px auto;  
+    max-width: 100%;
+    height: auto;        
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -241,6 +250,7 @@ body {
     text-decoration: underline;
 }
 
+
 .motos-container {
     display: flex;
     flex-wrap: wrap;
@@ -335,6 +345,7 @@ body {
 .botao-ver-mais:hover {
     background-color: #155ab6;
 }
+
 
 @media (min-width: 600px) {
     .header {

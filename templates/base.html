@@ -10,6 +10,7 @@
 <body>
 
     {% include 'partials/header.html' %}
+    <img src="{% static 'img/capa_vitrine.svg' %}" alt="capa-vitrine" class="capa-vitrine" />
 
     <main class="content">
         {% block content %}
@@ -17,7 +18,6 @@
     </main>
 
     {% include 'partials/footer.html' %}
-
 
     <div id="cartModal" class="modal">
         <div class="modal-content">
@@ -64,7 +64,6 @@
 
     <script src="{% static 'js/cart_modal.js' %}"></script>
 
-    {# Bloco para incluir scripts específicos de cada template #}
     {% block extra_scripts %}
     {% endblock %}
 </body>
