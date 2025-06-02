@@ -1,3 +1,4 @@
+from .models import ItemCarrinho, ItemCarrinhoAcessorio
 from itertools import chain
 from operator import attrgetter
 from django.views.generic import ListView, View
@@ -104,7 +105,8 @@ class CarrinhoView(LoginRequiredMixin, View):
 
     def get(self, request):
         carrinho, _ = Carrinho.objects.get_or_create(usuario=request.user)
-        itens = carrinho.itens.select_related('moto')
+        itens_moto = carrinho.itens.select_related('moto')
+        itens_acessorio = carrinho.itens_acessorio.select_related('acessorio')
 
         filtros = request.GET
         motos = Moto.objects.all()
@@ -132,31 +134,47 @@ class CarrinhoView(LoginRequiredMixin, View):
             'marcas': Moto._meta.get_field('marca').choices,
             'valores_get': filtros,
             'carrinho': carrinho,
-            'itens': itens
+            'itens_moto': itens_moto,
+            'itens_acessorio': itens_acessorio,
         }
 
         return render(request, 'loja/index.html', contexto)
 
     def post(self, request):
-        moto_id = request.POST.get('moto_id')
+        tipo = request.POST.get('tipo')
+        produto_id = request.POST.get('produto_id')
         acao = request.POST.get('acao')
-
-        if not moto_id or not moto_id.isdigit():
-            return redirect('home')
-
-        moto = Moto.objects.filter(id=moto_id).first()
-        if not moto:
-            return redirect('home')
 
         carrinho, _ = Carrinho.objects.get_or_create(usuario=request.user)
 
-        if acao == 'remover':
-            ItemCarrinho.objects.filter(carrinho=carrinho, moto=moto).delete()
-        else:
-            item, created = ItemCarrinho.objects.get_or_create(
-                carrinho=carrinho, moto=moto)
-            if not created:
-                item.quantidade += 1
-                item.save()
+        if tipo == 'moto':
+            moto = Moto.objects.filter(id=produto_id).first()
+            if not moto:
+                return redirect('home')
+
+            if acao == 'remover':
+                ItemCarrinho.objects.filter(
+                    carrinho=carrinho, moto=moto).delete()
+            else:
+                item, created = ItemCarrinho.objects.get_or_create(
+                    carrinho=carrinho, moto=moto)
+                if not created:
+                    item.quantidade += 1
+                    item.save()
+
+        elif tipo == 'acessorio':
+            acessorio = Acessorio.objects.filter(id=produto_id).first()
+            if not acessorio:
+                return redirect('home')
+
+            if acao == 'remover':
+                ItemCarrinhoAcessorio.objects.filter(
+                    carrinho=carrinho, acessorio=acessorio).delete()
+            else:
+                item, created = ItemCarrinhoAcessorio.objects.get_or_create(
+                    carrinho=carrinho, acessorio=acessorio)
+                if not created:
+                    item.quantidade += 1
+                    item.save()
 
         return redirect('home')

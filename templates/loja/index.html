@@ -42,7 +42,16 @@
                     {% if produto.modelo %}
                         <form method="post" action="{% url 'carrinho' %}">
                             {% csrf_token %}
-                            <input type="hidden" name="moto_id" value="{{ produto.id }}">
+                            <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                            <input type="hidden" name="tipo" value="moto">
+                            <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
+                        </form>
+
+                    {% else %}
+                        <form method="post" action="{% url 'carrinho' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                            <input type="hidden" name="tipo" value="acessorio">
                             <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
                         </form>
                     {% endif %}

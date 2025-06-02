@@ -25,15 +25,28 @@
 
             <h2>Seu Carrinho</h2>
 
-            {% if itens %}
+            {% if itens_moto or itens_acessorio %}
                 <ul>
-                    {% for item in itens %}
+                    {% for item in itens_moto %}
                         <li>
-                            {{ item.quantidade }}X {{ item.moto.modelo }} - {{ item.moto.ano }} ({{ item.moto.get_marca_display }})
-
+                            {{ item.quantidade }}x {{ item.moto.modelo }} - {{ item.moto.ano }} ({{ item.moto.get_marca_display }})
                             <form method="post" action="{% url 'carrinho' %}">
                                 {% csrf_token %}
-                                <input type="hidden" name="moto_id" value="{{ item.moto.id }}">
+                                <input type="hidden" name="produto_id" value="{{ item.moto.id }}">
+                                <input type="hidden" name="tipo" value="moto">
+                                <input type="hidden" name="acao" value="remover">
+                                <button type="submit" class="remove-btn-cart">X</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+
+                    {% for item in itens_acessorio %}
+                        <li>
+                            {{ item.quantidade }}x {{ item.acessorio.nome }} ({{ item.acessorio.get_tipo_display }})
+                            <form method="post" action="{% url 'carrinho' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="produto_id" value="{{ item.acessorio.id }}">
+                                <input type="hidden" name="tipo" value="acessorio">
                                 <input type="hidden" name="acao" value="remover">
                                 <button type="submit" class="remove-btn-cart">X</button>
                             </form>

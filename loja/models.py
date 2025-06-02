@@ -83,3 +83,10 @@ class ItemCarrinho(models.Model):
         Carrinho, on_delete=models.CASCADE, related_name='itens')
     moto = models.ForeignKey(Moto, on_delete=models.CASCADE)
     quantidade = models.PositiveIntegerField(default=1)
+
+
+class ItemCarrinhoAcessorio(models.Model):
+    carrinho = models.ForeignKey(
+        Carrinho, on_delete=models.CASCADE, related_name='itens_acessorio')
+    acessorio = models.ForeignKey(Acessorio, on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField(default=1)
