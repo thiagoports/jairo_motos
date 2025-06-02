@@ -11,8 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    background-color: #333333;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #333333;
     text-align: center;
 }
 
@@ -190,7 +190,7 @@ body {
 .content {
     flex: 1;
     padding: 20px 15px;
-    background-color: #333333;
+    background-color: #ffffff;
 }
 
 .paginacao {

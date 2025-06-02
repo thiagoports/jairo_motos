@@ -12,7 +12,6 @@ urlpatterns = [
     path('', include('loja.urls')),
     path('home/', MotoListView.as_view(), name='home'),
 
-    # Redireciona root / → /home/
     path('', RedirectView.as_view(pattern_name='home', permanent=False)),
 ]
 
