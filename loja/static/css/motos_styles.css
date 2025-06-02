@@ -11,8 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     font-family: 'Montserrat', sans-serif;
-    background-color: #fbfbfb;
-    color: #333;
+    background-color: #333333;
+    color: #ffffff;
     text-align: center;
 }
 
@@ -23,7 +23,8 @@ body {
     align-items: center;
     padding: 1rem;
     background-color: #1E7FE6;
-    border-bottom: 1px solid #ccc;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
 }
 
 .cart-container {
@@ -58,6 +59,7 @@ body {
     width: 80%;
     max-width: 500px;
     position: relative;
+    color: #333333;
 }
 
 .modal-content ul {
@@ -188,7 +190,7 @@ body {
 .content {
     flex: 1;
     padding: 20px 15px;
-    background-color: white;
+    background-color: #333333;
 }
 
 .paginacao {
@@ -222,7 +224,7 @@ body {
 }
 
 .footer {
-    background-color: #333333;
+    background-color: #0f0f0f;
     font-weight: 600;
     color: white;
     text-align: center;
@@ -245,15 +247,17 @@ body {
     justify-content: center;
     gap: 15px;
     padding: 10px;
+    background-color: white;
+    border-radius: 20px;
 }
 
 .moto-card {
+    color: #333333;
     flex: 0 1 calc(50% - 10px);
     max-width: calc(50% - 10px);
-    border: 1px solid #ddd;
     border-radius: 10px;
     overflow: hidden;
-    background-color: #fafafa;
+    background-color: rgb(229, 229, 229);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -270,8 +274,14 @@ body {
 
 .moto-info {
     padding: 15px;
-    text-align: left;
+    text-align: center;
     flex-grow: 1;
+}
+
+.moto-info .moto-modelo,
+.moto-info .moto-marca,
+.moto-info .moto-preco {
+    text-align: left;
 }
 
 .moto-modelo {
@@ -290,8 +300,8 @@ body {
     display: inline-block;
     background-color: #25D366;
     color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 8px 14px;
+    border-radius: 6px;
     text-decoration: none;
     font-weight: 600;
     margin: 10px 8px 0 0;
