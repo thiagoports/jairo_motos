@@ -32,9 +32,11 @@
                 <p class="moto-marca">{{ moto.get_marca_display }}</p>
                 <p class="moto-preco">{{ moto.preco|moeda_brasileira }}</p>
 
-                <a href="{{ moto.link_whatsapp }}" target="_blank" class="botao-whatsapp">
-                    WhatsApp
-                </a>
+                <form method="post" action="{% url 'carrinho' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="moto_id" value="{{ moto.id }}">
+                    <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
+                </form>
 
                 <button type="button"
                         class="botao-ver-mais"

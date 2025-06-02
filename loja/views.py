@@ -1,9 +1,11 @@
 from django.views.generic import ListView, View
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Moto, Acessorio, Carrinho, ItemCarrinho
 from .forms import SignUpForm
+from django.core.paginator import Paginator
+
 
 # Class Based views:
 
@@ -108,8 +110,13 @@ class CarrinhoView(LoginRequiredMixin, View):
         if filtros.get('ano'):
             motos = motos.filter(ano=filtros['ano'])
 
+        paginator = Paginator(motos, 8)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
         contexto = {
-            'loja': motos,
+            'loja': page_obj.object_list,
+            'page_obj': page_obj,
             'marcas': Moto._meta.get_field('marca').choices,
             'valores_get': filtros,
             'carrinho': carrinho,
