@@ -23,38 +23,59 @@
 </form>
 
 <section class="motos-container">
-    {% if loja %}
-        {% for moto in loja %}
-        <div class="moto-card">
-            <img src="{{ moto.imagem.url }}" alt="{{ moto.modelo }}" class="moto-img">
-            <div class="moto-info">
-                <h2 class="moto-modelo">{{ moto.modelo }} - {{ moto.ano }}</h2>
-                <p class="moto-marca">{{ moto.get_marca_display }}</p>
-                <p class="moto-preco">{{ moto.preco|moeda_brasileira }}</p>
+    {% if produtos %}
+        {% for produto in produtos %}
+            <div class="moto-card">
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.display_nome }}" class="moto-img">
 
-                <form method="post" action="{% url 'carrinho' %}">
-                    {% csrf_token %}
-                    <input type="hidden" name="moto_id" value="{{ moto.id }}">
-                    <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
-                </form>
+                <div class="moto-info">
+                    {% if produto.modelo %}
+                        <h2 class="moto-modelo">{{ produto.modelo }} - {{ produto.ano }}</h2>
+                        <p class="moto-marca">{{ produto.get_marca_display }}</p>
+                    {% else %}
+                        <h2 class="moto-modelo">{{ produto.nome }}</h2>
+                        <p class="moto-marca">{{ produto.get_tipo_display }}</p>
+                    {% endif %}
 
-                <button type="button"
-                        class="botao-ver-mais"
-                        data-modelo="{{ moto.modelo }}"
-                        data-descricao="{{ moto.descricao|default_if_none:''|escapejs }}"
-                        data-ano="{{ moto.ano }}"
-                        data-preco="{{ moto.preco }}"
-                        data-imagem="{{ moto.imagem.url }}">
-                    Ver mais
-                </button>
+                    <p class="moto-preco">{{ produto.preco|moeda_brasileira }}</p>
+
+                    {% if produto.modelo %}
+                        <form method="post" action="{% url 'carrinho' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="moto_id" value="{{ produto.id }}">
+                            <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
+                        </form>
+                    {% endif %}
+
+                    {% if produto.modelo %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.modelo }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano="{{ produto.ano }}"
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{{ produto.imagem.url }}">
+                            Ver mais
+                        </button>
+                    {% else %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.nome }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano="—"
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{{ produto.imagem.url }}">
+                            Ver mais
+                        </button>
+                    {% endif %}
+
+                </div>
             </div>
-        </div>
         {% endfor %}
     {% else %}
-        <div class="empty-message">
-            Nenhuma moto cadastrada
-        </div>
+        <div class="empty-message">Nenhum produto encontrado.</div>
     {% endif %}
+
 </section>
 
 <div class="paginacao">

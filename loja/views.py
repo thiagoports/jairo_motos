@@ -1,3 +1,5 @@
+from itertools import chain
+from operator import attrgetter
 from django.views.generic import ListView, View
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -56,6 +58,9 @@ class MotoListView(LoginRequiredMixin, ListView):
         context['valores_get'] = self.request.GET
         return context
 
+    def display_nome(self):
+        return getattr(self, 'modelo', None) or getattr(self, 'nome', '')
+
 
 class AcessorioView(LoginRequiredMixin, ListView):
     model = Acessorio
@@ -90,6 +95,9 @@ class AcessorioView(LoginRequiredMixin, ListView):
         context['valores_get'] = self.request.GET
         return context
 
+    def display_nome(self):
+        return getattr(self, 'modelo', None) or getattr(self, 'nome', '')
+
 
 class CarrinhoView(LoginRequiredMixin, View):
     login_url = 'login'
@@ -100,6 +108,7 @@ class CarrinhoView(LoginRequiredMixin, View):
 
         filtros = request.GET
         motos = Moto.objects.all()
+        acessorios = Acessorio.objects.all()
 
         if filtros.get('marca') and filtros['marca'] != 'TODAS':
             motos = motos.filter(marca=filtros['marca'])
@@ -110,12 +119,15 @@ class CarrinhoView(LoginRequiredMixin, View):
         if filtros.get('ano'):
             motos = motos.filter(ano=filtros['ano'])
 
-        paginator = Paginator(motos, 8)
+        produtos = list(chain(motos, acessorios))
+        produtos.sort(key=attrgetter('preco'))
+
+        paginator = Paginator(produtos, 8)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
         contexto = {
-            'loja': page_obj.object_list,
+            'produtos': page_obj.object_list,
             'page_obj': page_obj,
             'marcas': Moto._meta.get_field('marca').choices,
             'valores_get': filtros,
