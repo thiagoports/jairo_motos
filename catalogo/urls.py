@@ -8,9 +8,8 @@ from loja.views import MotoListView, SignUpView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
     path('accounts/', include('accounts.urls')),
-
+    path('', include('loja.urls')),
     path('home/', MotoListView.as_view(), name='home'),
 
     # Redireciona root / → /home/
@@ -18,4 +17,5 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)

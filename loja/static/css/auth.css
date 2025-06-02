@@ -13,10 +13,10 @@ body.auth-page {
 }
 
 .auth-container.signup-container {
-  max-width: 400px !important;      
-  max-height: 500px !important;     
-  overflow-y: auto !important;      
-  padding-top: 30px !important;     
+  max-width: 400px !important;
+  max-height: 500px !important;
+  overflow-y: auto !important;
+  padding-top: 30px !important;
   padding-bottom: 30px !important;
   padding-left: 30px !important;
   padding-right: 30px !important;
@@ -32,7 +32,7 @@ body.auth-page {
 
 img.auth-logo {
   display: block;
-  margin: 0 auto 10px;
+  margin: 0 85px 10px;
   width: 400px;
 }
 
@@ -52,32 +52,32 @@ img.auth-logo {
 }
 
 .auth-container.signup-container {
-  max-width: 400px !important;    
-  padding: 30px !important;        
-  max-height: 500px;               
-  overflow-y: auto;                
-  overflow-x: hidden;       
-  transform: translateX(55px);       
+  max-width: 400px !important;
+  padding: 30px !important;
+  max-height: 500px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: translateX(55px);
 }
 
 .auth-container.signup-container::-webkit-scrollbar {
-  width: 8px;              
-  height: 8px;             
+  width: 8px;
+  height: 8px;
 }
 
 .auth-container.signup-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1); 
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 8px;
 }
 
 .auth-container.signup-container::-webkit-scrollbar-thumb {
-  background-color: none; 
+  background-color: none;
   border-radius: 8px;
   border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
 .auth-container.signup-container::-webkit-scrollbar-thumb:hover {
-  background-color: #d4d4d4; 
+  background-color: #d4d4d4;
 }
 
 .auth-container h2 {
@@ -103,6 +103,7 @@ img.auth-logo {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
+  outline: none;
 }
 
 .form-error {
@@ -183,6 +184,7 @@ img.auth-logo {
   border-radius: 4px;
   cursor: pointer;
   font-size: 1rem;
+  outline: none;
 }
 
 .auth-container button:hover {
@@ -244,11 +246,13 @@ img.auth-logo {
     align-items: center;
     flex-direction: row;
   }
+
   .auth-logo {
     width: 150px !important;
     transform: translateX(-85px) translateY(20px) !important;
     margin-top: 0 !important;
   }
+
   .auth-left {
     position: absolute;
     left: 10%;
@@ -257,18 +261,20 @@ img.auth-logo {
     max-width: 400px;
     text-align: left;
   }
+
   .auth-container {
     max-width: 400px;
     padding: 30px;
     margin: 0;
   }
+
   .auth-container.signup-container {
     max-width: 400px !important;
     max-height: 500px !important;
     padding-top: 30px !important;
     padding-bottom: 30px !important;
-    transform: translateX(55px); 
-    margin: 0; 
+    transform: translateX(55px);
+    margin: 0;
   }
 }
 
@@ -280,11 +286,13 @@ img.auth-logo {
     align-items: center;
     flex-direction: row;
   }
+
   .auth-logo {
     width: 130px !important;
     transform: translateX(-70px) translateY(15px) !important;
     margin-top: 0 !important;
   }
+
   .auth-left {
     position: absolute;
     left: 8%;
@@ -293,18 +301,20 @@ img.auth-logo {
     max-width: 350px;
     text-align: left;
   }
+
   .auth-container {
     max-width: 360px;
     padding: 25px;
     margin: 0;
   }
+
   .auth-container.signup-container {
     max-width: 400px !important;
     max-height: 500px !important;
     padding-top: 30px !important;
     padding-bottom: 30px !important;
-    transform: translateX(55px); 
-    margin: 0; 
+    transform: translateX(55px);
+    margin: 0;
   }
 }
 
@@ -316,11 +326,13 @@ img.auth-logo {
     align-items: center !important;
     flex-direction: column !important;
   }
+
   .auth-logo {
     width: 120px !important;
     transform: none !important;
     margin: 0 auto 20px auto !important;
   }
+
   .auth-left {
     position: static !important;
     transform: none !important;
@@ -328,6 +340,7 @@ img.auth-logo {
     margin: 0 auto 20px auto !important;
     text-align: center !important;
   }
+
   .auth-container {
     max-width: 320px !important;
     width: 90% !important;
@@ -335,9 +348,10 @@ img.auth-logo {
     padding: 20px !important;
     border-radius: 12px !important;
   }
+
   .auth-container.signup-container {
-    transform: none !important; 
-    margin: 0 auto !important;  
+    transform: none !important;
+    margin: 0 auto !important;
     max-width: 320px !important;
     max-height: 500px !important;
     padding-top: 30px !important;
@@ -353,11 +367,13 @@ img.auth-logo {
     align-items: center !important;
     flex-direction: column !important;
   }
+
   .auth-logo {
     width: 110px !important;
     transform: none !important;
     margin: 0 auto 20px auto !important;
   }
+
   .auth-left {
     position: static !important;
     transform: none !important;
@@ -365,6 +381,7 @@ img.auth-logo {
     margin: 0 auto 20px auto !important;
     text-align: center !important;
   }
+
   .auth-container {
     max-width: 100% !important;
     width: 90% !important;
@@ -372,9 +389,10 @@ img.auth-logo {
     padding: 15px !important;
     border-radius: 12px !important;
   }
+
   .auth-container.signup-container {
-    transform: none !important; 
-    margin: 0 auto !important;  
+    transform: none !important;
+    margin: 0 auto !important;
     max-width: 100% !important;
     padding: 15px !important;
   }
@@ -388,11 +406,13 @@ img.auth-logo {
     align-items: center !important;
     flex-direction: column !important;
   }
+
   .auth-logo {
     width: 100px !important;
     transform: none !important;
     margin: 0 auto 20px auto !important;
   }
+
   .auth-left {
     position: static !important;
     transform: none !important;
@@ -400,12 +420,14 @@ img.auth-logo {
     margin: 0 auto 20px auto !important;
     text-align: center !important;
   }
+
   .auth-container {
     max-width: 100% !important;
     width: 90% !important;
     margin: 0 auto !important;
     padding: 12px 15px !important;
   }
+
   .auth-container.signup-container {
     transform: none !important;
     margin: 0 auto !important;
@@ -422,11 +444,13 @@ img.auth-logo {
     align-items: center !important;
     flex-direction: column !important;
   }
+
   .auth-logo {
     width: 90px !important;
     transform: none !important;
     margin: 0 auto 20px auto !important;
   }
+
   .auth-left {
     position: static !important;
     transform: none !important;
@@ -434,26 +458,26 @@ img.auth-logo {
     margin: 0 auto 15px auto !important;
     text-align: center !important;
   }
+
   .auth-container {
     max-width: 100% !important;
     width: 95% !important;
     margin: 0 auto !important;
     padding: 10px 12px !important;
   }
+
   .auth-container.signup-container {
     transform: none !important;
     margin: 0 auto !important;
     max-width: 100% !important;
     padding: 10px 12px !important;
   }
+
   .auth-title {
     font-size: 2rem !important;
   }
+
   .auth-subtitle {
     font-size: 1rem !important;
   }
 }
-
-
-
-

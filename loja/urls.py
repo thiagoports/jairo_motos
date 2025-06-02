@@ -2,5 +2,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    #dps colocar as url para editar e deletar
+    path('carrinho/', views.CarrinhoView.as_view(), name='carrinho'),
+    path('home/', views.CarrinhoView.as_view(), name='home'),
+
 ]

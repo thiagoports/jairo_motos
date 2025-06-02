@@ -48,7 +48,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / 'templates',  
+            BASE_DIR / 'templates',
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -72,7 +72,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'motos_db',
         'USER': 'postgres',
-        'PASSWORD': 'Eoqmlk!123',
+        'PASSWORD': '12345',
         'HOST': 'localhost',
         'PORT': '5432',
     }
