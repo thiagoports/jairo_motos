@@ -40,13 +40,38 @@
                     <p class="moto-preco">{{ produto.preco|moeda_brasileira }}</p>
 
                     {% if produto.modelo %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.modelo }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano="{{ produto.ano }}"
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{{ produto.imagem.url }}"
+                                data-marca="{{ produto.get_marca_display }}"
+                                data-tipo="">
+                            Ver mais
+                        </button>
+                    {% else %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.nome }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano=""
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{% if produto.imagem %}{{ produto.imagem.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}"
+                                data-marca=""
+                                data-tipo="{{ produto.get_tipo_display }}">
+                            Ver mais
+                        </button>
+                    {% endif %}
+
+                    {% if produto.modelo %}
                         <form method="post" action="{% url 'carrinho' %}">
                             {% csrf_token %}
                             <input type="hidden" name="produto_id" value="{{ produto.id }}">
                             <input type="hidden" name="tipo" value="moto">
                             <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
                         </form>
-
                     {% else %}
                         <form method="post" action="{% url 'carrinho' %}">
                             {% csrf_token %}
@@ -55,36 +80,12 @@
                             <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
                         </form>
                     {% endif %}
-
-                    {% if produto.modelo %}
-                        <button type="button"
-                                class="botao-ver-mais"
-                                data-modelo="{{ produto.modelo }}"
-                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
-                                data-ano="{{ produto.ano }}"
-                                data-preco="{{ produto.preco }}"
-                                data-imagem="{{ produto.imagem.url }}">
-                            Ver mais
-                        </button>
-                    {% else %}
-                        <button type="button"
-                                class="botao-ver-mais"
-                                data-modelo="{{ produto.nome }}"
-                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
-                                data-ano="—"
-                                data-preco="{{ produto.preco }}"
-                                data-imagem="{{ produto.imagem.url }}">
-                            Ver mais
-                        </button>
-                    {% endif %}
-
                 </div>
             </div>
         {% endfor %}
     {% else %}
         <div class="empty-message">Nenhum produto encontrado.</div>
     {% endif %}
-
 </section>
 
 <div class="paginacao">
@@ -107,21 +108,32 @@
     {% endif %}
 </div>
 
-<div id="modal-moto" class="modal">
+<div id="modal-moto" class="modal" style="display: none;">
     <div class="modal-content">
         <span id="modal-fechar" class="close">&times;</span>
         <div class="conteudo-moto">
-            <img id="modal-imagem" src="" alt="Foto da moto" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px;">
+            <img id="modal-imagem" src="" alt="Foto do produto" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px;">
+
             <h2 id="modal-modelo"></h2>
             <p id="modal-descricao" style="text-align: justify; margin-bottom: 15px;"></p>
+
             <ul style="list-style: none; padding: 0; text-align: left;">
-                <li><strong>Ano:</strong> <span id="modal-ano"></span></li>
-                <li><strong>Preço:</strong> <span id="modal-preco"></span></li>
+                <li id="li-ano" style="display: none;">
+                    <strong>Ano:</strong> <span id="modal-ano"></span>
+                </li>
+                <li id="li-marca" style="display: none;">
+                    <strong>Marca:</strong> <span id="modal-marca"></span>
+                </li>
+                <li id="li-tipo" style="display: none;">
+                    <strong>Tipo:</strong> <span id="modal-tipo"></span>
+                </li>
+                <li>
+                    <strong>Preço: <span id="modal-preco"></span></strong>
+                </li>
             </ul>
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block extra_scripts %}
