@@ -114,12 +114,16 @@ class CarrinhoView(LoginRequiredMixin, View):
 
         if filtros.get('marca') and filtros['marca'] != 'TODAS':
             motos = motos.filter(marca=filtros['marca'])
+            acessorios = acessorios.filter(tipo="tutu")
         if filtros.get('modelo'):
             motos = motos.filter(modelo__icontains=filtros['modelo'])
         if filtros.get('preco_max'):
             motos = motos.filter(preco__lte=filtros['preco_max'])
         if filtros.get('ano'):
             motos = motos.filter(ano=filtros['ano'])
+        if filtros.get('tipos'):
+            acessorios = acessorios.filter(tipo=filtros['tipos'])
+            motos = motos.filter(marca="lukinhas")
 
         produtos = list(chain(motos, acessorios))
         produtos.sort(key=attrgetter('preco'))
@@ -132,6 +136,7 @@ class CarrinhoView(LoginRequiredMixin, View):
             'produtos': page_obj.object_list,
             'page_obj': page_obj,
             'marcas': Moto._meta.get_field('marca').choices,
+            'tipos': Acessorio._meta.get_field('tipo').choices,
             'valores_get': filtros,
             'carrinho': carrinho,
             'itens_moto': itens_moto,

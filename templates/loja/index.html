@@ -14,6 +14,13 @@
             {% endfor %}
         </select>
 
+        <select name="tipos">
+            <option value="">Todas os tipos</option>
+            {% for value, display in tipos %}
+                <option value="{{ value }}" {% if valores_get.tipos == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+        </select>
+
         <input type="text" name="modelo" placeholder="Modelo" value="{{ valores_get.modelo }}">
         <input type="number" name="preco_max" placeholder="Preço máximo" value="{{ valores_get.preco_max }}">
         <input type="number" name="ano" placeholder="Ano" value="{{ valores_get.ano }}">
