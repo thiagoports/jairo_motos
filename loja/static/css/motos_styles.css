@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+    color: #333333;
+    text-align: center;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #1E7FE6;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.cart-container {
+    height: auto;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+.cart-container img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.capa-vitrine {
+    width: 95vw;
+    border-radius: 20px;
+    display: block;      
+    margin: 20px auto;  
+    max-width: 100%;
+    height: auto;        
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    color: #333333;
+}
+
+.modal-content ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+}
+
+.modal-content ul li {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.remove-btn-cart {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    color: white;
+    background-color: #ff4a5c;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.logo {
+    height: auto;
+    max-width: 150px;
+    object-fit: contain;
+}
+
+.nav-auth {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.logout-form {
+    display: inline;
+}
+
+.auth-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+}
+
+.auth-links li a,
+.btn-logout {
+    background-color: white;
+    color: #000000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #ff4a5c;
+}
+
+.filtro-form {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    max-width: 900px;
+    width: 100%;
+    justify-content: center;
+}
+
+.filtros select,
+.filtros input {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+    min-width: 150px;
+    background-color: #fff;
+    outline: none;
+}
+
+.filtros input[type="number"]::-webkit-inner-spin-button {
+    margin: 0;
+}
+
+.filtros button {
+    background-color: #007bff;
+    color: white;
+    padding: 9px 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.filtros button:hover {
+    background-color: #0056b3;
+}
+
+.content {
+    flex: 1;
+    padding: 20px 15px;
+    background-color: #ffffff;
+}
+
+.paginacao {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.paginacao a,
+.paginacao .pagina-atual {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    margin: 0 4px;
+    text-align: center;
+    border-radius: 50%;
+    background-color: #1E7FE6;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.paginacao a:hover {
+    background-color: #0056b3;
+}
+
+.paginacao .pagina-atual {
+    background-color: #0056b3;
+    cursor: default;
+}
+
+.footer {
+    background-color: #0f0f0f;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    padding: 15px 10px;
+    font-size: 0.9rem;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+
+
+.motos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 20px;
+}
+
+.moto-card {
+    color: #333333;
+    flex: 0 1 calc(50% - 10px);
+    max-width: calc(50% - 10px);
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: rgb(229, 229, 229);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.moto-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.moto-info {
+    padding: 15px;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.moto-info .moto-modelo,
+.moto-info .moto-marca,
+.moto-info .moto-preco {
+    text-align: left;
+}
+
+.moto-modelo {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    color: #1e7fe6;
+}
+
+.moto-marca,
+.moto-preco {
+    margin: 0 0 5px;
+    font-weight: 600;
+}
+
+.botao-whatsapp {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 10px 8px 0 0;
+    width: auto;
+    outline: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.botao-whatsapp:hover {
+    background-color: #1DA851;
+}
+
+.botao-ver-mais {
+    display: inline-block;
+    background-color: #1E7FE6;
+    color: #fff;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    vertical-align: middle;
+}
+
+.botao-ver-mais:hover {
+    background-color: #155ab6;
+}
+
+
+@media (min-width: 600px) {
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .nav-auth {
+        top: 1rem;
+        right: 1rem;
+        margin-top: 0;
+        justify-content: flex-end;
+    }
+
+    .motos-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .moto-card {
+        flex: 0 1 45%;
+        max-width: 45%;
+    }
+
+    .moto-img {
+        height: 260px;
+    }
+}
+
+@media (min-width: 900px) {
+    .motos-container {
+        gap: 30px;
+    }
+
+    .moto-card {
+        flex: 0 1 300px;
+        max-width: 300px;
+    }
+
+    .moto-img {
+        height: 320px;
+    }
+}

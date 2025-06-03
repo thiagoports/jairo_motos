@@ -10,6 +10,7 @@
 <body>
 
     {% include 'partials/header.html' %}
+    <img src="{% static 'img/capa_vitrine.svg' %}" alt="capa-vitrine" class="capa-vitrine" />
 
     <main class="content">
         {% block content %}
@@ -18,5 +19,52 @@
 
     {% include 'partials/footer.html' %}
 
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeCart">&times;</span>
+
+            <h2>Seu Carrinho</h2>
+
+            {% if itens_moto or itens_acessorio %}
+                <ul>
+                    {% for item in itens_moto %}
+                        <li>
+                            {{ item.quantidade }}x {{ item.moto.modelo }} - {{ item.moto.ano }} ({{ item.moto.get_marca_display }})
+                            <form method="post" action="{% url 'carrinho' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="produto_id" value="{{ item.moto.id }}">
+                                <input type="hidden" name="tipo" value="moto">
+                                <input type="hidden" name="acao" value="remover">
+                                <button type="submit" class="remove-btn-cart">X</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+
+                    {% for item in itens_acessorio %}
+                        <li>
+                            {{ item.quantidade }}x {{ item.acessorio.nome }} ({{ item.acessorio.get_tipo_display }})
+                            <form method="post" action="{% url 'carrinho' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="produto_id" value="{{ item.acessorio.id }}">
+                                <input type="hidden" name="tipo" value="acessorio">
+                                <input type="hidden" name="acao" value="remover">
+                                <button type="submit" class="remove-btn-cart">X</button>
+                            </form>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <a href="{{ carrinho.link_whatsapp }}" target="_blank" class="botao-whatsapp">
+                    Finalizar no WhatsApp
+                </a>
+            {% else %}
+                <p>O carrinho está vazio.</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/cart_modal.js' %}"></script>
+
+    {% block extra_scripts %}
+    {% endblock %}
 </body>
 </html>

@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% load formatadores %}
+
+{% block content %}
+<h1 class="titulo-pagina">Produtos Disponíveis</h1>
+
+<form method="get" class="filtro-form">
+    <div class="filtros">
+        <select name="marca">
+            <option value="">Todas as marcas</option>
+            {% for value, display in marcas %}
+                <option value="{{ value }}" {% if valores_get.marca == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+        </select>
+
+        <select name="tipos">
+            <option value="">Todas os tipos</option>
+            {% for value, display in tipos %}
+                <option value="{{ value }}" {% if valores_get.tipos == value %}selected{% endif %}>{{ display }}</option>
+            {% endfor %}
+        </select>
+
+        <input type="text" name="modelo" placeholder="Modelo" value="{{ valores_get.modelo }}">
+        <input type="number" name="preco_max" placeholder="Preço máximo" value="{{ valores_get.preco_max }}">
+        <input type="number" name="ano" placeholder="Ano" value="{{ valores_get.ano }}">
+
+        <button type="submit">Filtrar</button>
+    </div>
+</form>
+
+<section class="motos-container">
+    {% if produtos %}
+        {% for produto in produtos %}
+            <div class="moto-card">
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.display_nome }}" class="moto-img">
+
+                <div class="moto-info">
+                    {% if produto.modelo %}
+                        <h2 class="moto-modelo">{{ produto.modelo }} - {{ produto.ano }}</h2>
+                        <p class="moto-marca">{{ produto.get_marca_display }}</p>
+                    {% else %}
+                        <h2 class="moto-modelo">{{ produto.nome }}</h2>
+                        <p class="moto-marca">{{ produto.get_tipo_display }}</p>
+                    {% endif %}
+
+                    <p class="moto-preco">{{ produto.preco|moeda_brasileira }}</p>
+
+                    {% if produto.modelo %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.modelo }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano="{{ produto.ano }}"
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{{ produto.imagem.url }}"
+                                data-marca="{{ produto.get_marca_display }}"
+                                data-tipo="">
+                            Ver mais
+                        </button>
+                    {% else %}
+                        <button type="button"
+                                class="botao-ver-mais"
+                                data-modelo="{{ produto.nome }}"
+                                data-descricao="{{ produto.descricao|default_if_none:''|escapejs }}"
+                                data-ano=""
+                                data-preco="{{ produto.preco }}"
+                                data-imagem="{% if produto.imagem %}{{ produto.imagem.url }}{% else %}{% static 'img/placeholder.png' %}{% endif %}"
+                                data-marca=""
+                                data-tipo="{{ produto.get_tipo_display }}">
+                            Ver mais
+                        </button>
+                    {% endif %}
+
+                    {% if produto.modelo %}
+                        <form method="post" action="{% url 'carrinho' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                            <input type="hidden" name="tipo" value="moto">
+                            <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
+                        </form>
+                    {% else %}
+                        <form method="post" action="{% url 'carrinho' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="produto_id" value="{{ produto.id }}">
+                            <input type="hidden" name="tipo" value="acessorio">
+                            <button type="submit" class="botao-whatsapp">Adicionar ao Carrinho</button>
+                        </form>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="empty-message">Nenhum produto encontrado.</div>
+    {% endif %}
+</section>
+
+<div class="paginacao">
+    {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo;</a>
+        <a href="?page={{ page_obj.previous_page_number }}">&lsaquo;</a>
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <strong class="pagina-atual">{{ num }}</strong>
+        {% elif num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}"> &rsaquo;</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}"> &raquo;</a>
+    {% endif %}
+</div>
+
+<div id="modal-moto" class="modal" style="display: none;">
+    <div class="modal-content">
+        <span id="modal-fechar" class="close">&times;</span>
+        <div class="conteudo-moto">
+            <img id="modal-imagem" src="" alt="Foto do produto" style="max-width: 100%; border-radius: 8px; margin-bottom: 15px;">
+
+            <h2 id="modal-modelo"></h2>
+            <p id="modal-descricao" style="text-align: justify; margin-bottom: 15px;"></p>
+
+            <ul style="list-style: none; padding: 0; text-align: left;">
+                <li id="li-ano" style="display: none;">
+                    <strong>Ano:</strong> <span id="modal-ano"></span>
+                </li>
+                <li id="li-marca" style="display: none;">
+                    <strong>Marca:</strong> <span id="modal-marca"></span>
+                </li>
+                <li id="li-tipo" style="display: none;">
+                    <strong>Tipo:</strong> <span id="modal-tipo"></span>
+                </li>
+                <li>
+                    <strong>Preço: <span id="modal-preco"></span></strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="{% static 'js/catalogo.js' %}"></script>
+{% endblock %}

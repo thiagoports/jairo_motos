@@ -1,0 +1,49 @@
+{% extends "base_auth.html" %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+ 
+  <div class="auth-left">
+    <img src="{% static 'img/logo_jairomotos.png' %}" alt="Logo Jairo Motos" class="auth-logo">
+    <h1 class="auth-title">SUA LOJA<br>DE CONFIANÇA</h1>
+    <p class="auth-subtitle">Em motos novas e seminovas!</p>
+  </div>
+
+  <div class="auth-container">
+    <h2>Login</h2>
+    <form method="post" class="formezin">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="form-field">
+        {{ field.label_tag }}
+        {{ field }}
+        {% if field.errors %}
+          <div class="form-error">{{ field.errors }}</div>
+        {% endif %}
+      </div>
+      {% endfor %}
+
+      {% if form.non_field_errors %}
+      <div class="non-field-errors">
+        {{ form.non_field_errors }}
+      </div>
+      {% endif %}
+
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div class="divider">ou</div>
+    <a href="" class="google-btn">
+      <img src="{% static 'img/google.png' %}" alt="Google logo">
+      Entrar com Google
+    </a>
+
+    <p class="auth-switch">
+      Ainda não tem conta? <a href="{% url 'signup' %}">Cadastre-se</a>
+    </p>
+  </div>
+{% endblock %}
+
+
